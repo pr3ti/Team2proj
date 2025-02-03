@@ -2,9 +2,13 @@ FROM python:3.9
 
 WORKDIR /app
 
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+COPY carapp.py /app/
+COPY tests/ /app/tests/
+COPY templates/ /app/tests/
 
-COPY . .
+RUN pip install flask
+RUN pip install pytest
 
-CMD ["python", "car_app.py"]
+EXPOSE 5000
+
+CMD python3 -m pytest tests/ && python3 carapp.py
