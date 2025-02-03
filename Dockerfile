@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY carapp.py /app/
 COPY tests/ /app/tests/
-COPY templates/ /app/tests/
+COPY templates/ /app/templates/
 
 RUN pip install flask
 RUN pip install pytest
