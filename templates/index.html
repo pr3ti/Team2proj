@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Inventory</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        form { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Car Inventory</h2>
+
+    <!-- Car List Table -->
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Actions</th>
+        </tr>
+        {% for car in cars %}
+        <tr>
+            <td>{{ car.id }}</td>
+            <td>{{ car.make }}</td>
+            <td>{{ car.model }}</td>
+            <td>{{ car.year }}</td>
+            <td>
+                <form action="{{ url_for('delete_car', car_id=car.id) }}" method="get" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+                <form action="{{ url_for('update_car', car_id=car.id) }}" method="post" style="display:inline;">
+                    <input type="text" name="make" placeholder="Make" required>
+                    <input type="text" name="model" placeholder="Model" required>
+                    <input type="number" name="year" placeholder="Year" required>
+                    <button type="submit">Update</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Add Car Form -->
+    <h3>Add a New Car</h3>
+    <form action="{{ url_for('add_car') }}" method="post">
+        <input type="text" name="make" placeholder="Make" required>
+        <input type="text" name="model" placeholder="Model" required>
+        <input type="number" name="year" placeholder="Year" required>
+        <button type="submit">Add Car</button>
+    </form>
+</body>
+</html>
