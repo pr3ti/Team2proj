@@ -1,0 +1,5 @@
+if curl -s -o /dev/null -w "%{http_code}" http://192.168.88.141:5000/ | grep -q "200"; then
+	echo "The website is running";
+else
+	echo "The website is not running";
+fi

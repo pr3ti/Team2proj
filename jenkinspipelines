@@ -1,0 +1,14 @@
+node {
+    stage('Preparation') {
+        catchError(buildResult: 'SUCCESS') {
+            sh 'docker stop carapp'
+            sh 'docker cm carapp'
+        }
+    }
+    stage('Build') {
+        build 'buildapp'
+    }
+    stage('Test') {
+        build 'apptest'
+    }
+}
