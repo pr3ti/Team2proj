@@ -28,7 +28,7 @@ jobs:
 
       # 4. Run tests using pytest inside the Docker container
       - name: Run Tests - Integration Test
-        run: docker run --rm carapp python3 -m pytest tests/test_car_integration.py
+        run: docker run --rm carapp python3 -m pytest tests/test_car_integration_app.py
 
       # 5. Run tests for the main inventory manager code
       - name: Run Tests - Inventory Manager Test
