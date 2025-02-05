@@ -14,12 +14,13 @@
       pip:
         name: flask
         executable: pip3 #Explicitly use pip3
+        extra_args: --break-system-packages
     - name: Create project directory
       file:
         path: /opt/flask_app
         state:  directory
         owner:  "{{ ansible_user_id}}"
-        group:  "{{ anisble_user_id}}"
+        group:  "{{ ansible_user_id}}"
         mode: '0755'
     - name: Copy Flask app to localhost
       copy:
